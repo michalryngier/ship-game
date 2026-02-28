@@ -107,6 +107,9 @@ body {
     font-weight: 400;
     font-style: normal;
     background-color: var(--color-background); /* Use variable for background color */
+    user-select: none;
+    -webkit-user-select: none; /* For Safari */
+    -ms-user-select: none; /* For Internet Explorer */
 }
 
 .ship {
