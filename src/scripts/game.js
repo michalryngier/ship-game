@@ -200,7 +200,15 @@ class BoardState {
         ship.cells.forEach(({ row, col }) => {
             const neighbors = this.getCellMooreNeighborhood(row, col);
             neighbors.forEach(cell => {
-                if (!cell.classList.contains('miss') && !cell.classList.contains('ship')) {
+                const cellRow = cell.parentElement.rowIndex;
+                const cellCol = cell.cellIndex;
+
+                // Ensure the cell is within the working area
+                if (
+                    cellRow >= 1 && cellRow < 10 &&
+                    cellCol >= 1 && cellCol < 10 &&
+                    !cell.classList.contains('miss') && !cell.classList.contains('ship')
+                ) {
                     cell.classList.add('locked');
                 }
             });
@@ -296,15 +304,17 @@ class OpponentBoardStrategy extends BoardStrategyInterface {
         const { row, col } = event.coordinates;
         const cell = event.target;
 
+        const isShipCell = board.isShipCell(row, col);
+
         if (cell.tagName === 'TD') {
-            if (!cell.classList.contains('miss') && !cell.classList.contains('hit')) {
+            if (!cell.classList.contains('miss') && !cell.classList.contains('hit') && !isShipCell) {
                 // First click: mark as miss
                 board.markMiss(row, col);
-            } else if (cell.classList.contains('miss') && !cell.classList.contains('hit')) {
+            } else if (cell.classList.contains('miss') && !cell.classList.contains('hit') && !isShipCell) {
                 // Second click: mark as hit and unmark miss
                 board.unmarkMiss(row, col);
                 board.markHit(row, col);
-            } else if (cell.classList.contains('hit')) {
+            } else if (cell.classList.contains('hit') && !isShipCell) {
                 // Third click: reset cell
                 board.unmarkMiss(row, col);
                 board.unmarkHit(row, col);
