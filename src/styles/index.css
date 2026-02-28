@@ -1,0 +1,164 @@
+/* Add your CSS styles here */
+
+/* Styling for the game boards */
+.game-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+table.game-board th,
+.status-table th {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    text-align: center;
+    font-size: var(--table-text-size);
+    box-shadow: inset 0 0 0 1px var(--color-border);
+    border-radius: 8px;
+}
+
+table.game-board td,
+.status-table td {
+    box-shadow: inset 0 0 0 1px var(--color-border);
+    width: var(--cell-size);
+    height: var(--cell-size);
+    text-align: center;
+    font-size: var(--table-text-size);
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 3px;
+    background-clip: content-box;
+}
+
+table.game-board th {
+    background-color: var(--color-table-header); /* Use variable for table header color */
+}
+
+table.game-board td {
+    background-color: var(--color-table-cell-empty); /* Default background color for inner table cells */
+}
+
+/* Ensure classes like ship, miss, hit, invalid, locked, etc., override the default background color */
+table.game-board td.ship {
+    background-color: var(--color-ship) !important; /* Ensure ship color takes precedence */
+}
+
+table.game-board td.miss {
+    background-color: var(--color-miss) !important; /* Ensure miss color takes precedence */
+}
+
+table.game-board td.hit {
+    background-color: var(--color-hit) !important; /* Ensure hit color takes precedence */
+}
+
+table.game-board td.ship.invalid {
+    background-color: var(--color-invalid-ship) !important; /* Ensure invalid ship color takes precedence */
+}
+
+table.game-board td.locked {
+    background-color: var(--color-locked) !important; /* Ensure locked color takes precedence */
+}
+
+table.game-board td.hit.ship {
+    background-color: var(--color-hit-ship) !important; /* Ensure hit.ship color takes precedence */
+}
+
+/* Styling for the status tables */
+.status-table {
+    margin-top: 10px;
+    margin-left: 0;
+}
+
+.status-table th {
+    background-color: var(--color-table-header);
+}
+
+table.status-table td {
+    background-color: var(--color-table-cell-empty);
+}
+
+/* Styling for headings */
+.heading-center {
+    text-align: center;
+}
+
+.heading-left {
+    text-align: left;
+    margin-top: 20px;
+}
+
+:root {
+    --cell-size: 50px; /* Variable to control table cell size */
+    --table-text-size: 24px; /* Variable to control text size inside tables */
+    --color-background: #F8F3E9; /* Creamy aged canvas base */
+    --color-table-header: #EDE4D8; /* Soft impasto highlight */
+    --color-table-cell-empty: #EFEBE3; /* Warm parchment neutral, subtle aged paper tone */
+    --color-hit: #C8C8C8; /* Light silvery glaze */
+    --color-hit-ship: #6D7D99; /* Darker, greyed-out washed ship - damaged shadow */
+    --color-miss: #D97C3F; /* Burnt sienna splatter */
+    --color-locked: #D2C4B8; /* Slightly darker pearl with subtle orange tint */
+    --color-ship: #4A6FA5; /* Indigo hull with teal undertone */
+    --color-invalid-ship: #A93226; /* Raw umber crimson */
+    --color-hit-marker: #B22222; /* Fiery brick glaze */
+    --color-border: #4A3B30; /* Lighter burnt umber - softened linework */
+    --color-border-hit-marker: #8B1A1A; /* Darker brick rim */
+}
+
+body {
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    background-color: var(--color-background); /* Use variable for background color */
+}
+
+.ship {
+    background-color: var(--color-ship); /* Use variable for ship cell color */
+}
+
+/* Styling for the button container and button */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    width: 100%;
+    position: relative;
+    order: 1; /* Ensures it appears last in the flex container */
+}
+
+#ready-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Style for hit cells */
+.hit {
+    position: relative;
+}
+
+.hit::before,
+.hit::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-border-hit-marker); /* Use variable for hit marker border color */
+    transform-origin: center;
+}
+
+.hit::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.hit::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Ensure hit cells in the status board have the same shade as hit cells with ship */
+.status-table .hit {
+    background-color: var(--color-hit-ship);
+}
