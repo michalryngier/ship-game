@@ -8,19 +8,27 @@
     gap: 20px;
 }
 
-table.game-board {
-    border-collapse: collapse;
-}
-
 table.game-board th,
-table.game-board td,
-.status-table th,
-.status-table td {
-    border: 1px solid var(--color-border); /* Use variable for border color */
+.status-table th {
     width: var(--cell-size);
     height: var(--cell-size);
     text-align: center;
     font-size: var(--table-text-size);
+    box-shadow: inset 0 0 0 1px var(--color-border);
+    border-radius: 8px;
+}
+
+table.game-board td,
+.status-table td {
+    box-shadow: inset 0 0 0 1px var(--color-border);
+    width: var(--cell-size);
+    height: var(--cell-size);
+    text-align: center;
+    font-size: var(--table-text-size);
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 3px;
+    background-clip: content-box;
 }
 
 table.game-board th {
@@ -58,7 +66,6 @@ table.game-board td.hit.ship {
 
 /* Styling for the status tables */
 .status-table {
-    border-collapse: collapse;
     margin-top: 10px;
     margin-left: 0;
 }
@@ -68,7 +75,7 @@ table.game-board td.hit.ship {
 }
 
 table.status-table td {
-    background-color: var(--color-table-cell-empty); /* Use the same color as empty game-board cells */
+    background-color: var(--color-table-cell-empty);
 }
 
 /* Styling for headings */
@@ -83,7 +90,7 @@ table.status-table td {
 
 :root {
     --cell-size: 50px; /* Variable to control table cell size */
-    --table-text-size: 28px; /* Variable to control text size inside tables */
+    --table-text-size: 24px; /* Variable to control text size inside tables */
     --color-background: #F8F3E9; /* Creamy aged canvas base */
     --color-table-header: #EDE4D8; /* Soft impasto highlight */
     --color-table-cell-empty: #EFEBE3; /* Warm parchment neutral, subtle aged paper tone */
@@ -94,11 +101,15 @@ table.status-table td {
     --color-ship: #4A6FA5; /* Indigo hull with teal undertone */
     --color-invalid-ship: #A93226; /* Raw umber crimson */
     --color-hit-marker: #B22222; /* Fiery brick glaze */
-    --color-border: #2C1810; /* Rich burnt umber linework */
+    --color-border: #4A3B30; /* Lighter burnt umber - softened linework */
     --color-border-hit-marker: #8B1A1A; /* Darker brick rim */
 }
 
 body {
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     background-color: var(--color-background); /* Use variable for background color */
 }
 
