@@ -1,0 +1,29 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# macOS folder attributes
+Icon?
+
+# macOS resource forks
+._*
+
+# IDE files
+.idea/
+*.iml
+*.sublime-workspace
+*.sublime-project
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs
+*.ipr
+*.iws
+*.idea/
+*.iml
+out/
+
+# Node.js
+node_modules/
+

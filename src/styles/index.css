@@ -1,0 +1,125 @@
+/* Add your CSS styles here */
+
+/* Styling for the game boards */
+.game-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+table.game-board {
+    border-collapse: collapse;
+}
+
+table.game-board th,
+table.game-board td,
+.status-table th,
+.status-table td {
+    border: 1px solid black;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    text-align: center;
+    font-size: var(--table-text-size);
+}
+
+table.game-board th {
+    background-color: #f0f0f0;
+}
+
+/* Styling for the status tables */
+.status-table {
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-left: 0;
+}
+
+.status-table th {
+    background-color: #f0f0f0;
+}
+
+/* Styling for headings */
+.heading-center {
+    text-align: center;
+}
+
+.heading-left {
+    text-align: left;
+    margin-top: 20px;
+}
+
+:root {
+    --cell-size: 50px; /* Variable to control table cell size */
+    --table-text-size: 28px; /* Variable to control text size inside tables */
+}
+
+.ship {
+    background-color: blue; /* Color for ship cells */
+}
+
+/* Styling for cells that are both ship and invalid */
+.ship.invalid {
+    background-color: red; /* Color for cells that are both ship and invalid */
+}
+
+/* Styling for the button container and button */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    width: 100%;
+    position: relative;
+    order: 1; /* Ensures it appears last in the flex container */
+}
+
+#ready-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Style for hit cells */
+.hit {
+    background-color: #d3d3d3; /* Light gray for hit cells */
+    position: relative;
+}
+
+.hit::before,
+.hit::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background-color: red;
+    transform-origin: center;
+}
+
+.hit::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.hit::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Style for miss cells */
+.miss {
+    background-color: orange;
+}
+
+/* Style for locked cells */
+.locked {
+    background-color: lightgrey;
+}
+
+/* Add styles for hit and ship-hit cells */
+.hit.ship {
+    background-color: #a9a9a9; /* Darker gray for hit cells that are part of a ship */
+}
+
+/* Ensure hit cells in the status board have the same shade as hit cells with ship */
+.status-table .hit {
+    background-color: #a9a9a9; /* Darker gray for hit cells in the status board */
+}
