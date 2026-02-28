@@ -16,7 +16,7 @@ table.game-board th,
 table.game-board td,
 .status-table th,
 .status-table td {
-    border: 1px solid black;
+    border: 1px solid var(--color-border); /* Use variable for border color */
     width: var(--cell-size);
     height: var(--cell-size);
     text-align: center;
@@ -24,7 +24,36 @@ table.game-board td,
 }
 
 table.game-board th {
-    background-color: #f0f0f0;
+    background-color: var(--color-table-header); /* Use variable for table header color */
+}
+
+table.game-board td {
+    background-color: var(--color-table-cell-empty); /* Default background color for inner table cells */
+}
+
+/* Ensure classes like ship, miss, hit, invalid, locked, etc., override the default background color */
+table.game-board td.ship {
+    background-color: var(--color-ship) !important; /* Ensure ship color takes precedence */
+}
+
+table.game-board td.miss {
+    background-color: var(--color-miss) !important; /* Ensure miss color takes precedence */
+}
+
+table.game-board td.hit {
+    background-color: var(--color-hit) !important; /* Ensure hit color takes precedence */
+}
+
+table.game-board td.ship.invalid {
+    background-color: var(--color-invalid-ship) !important; /* Ensure invalid ship color takes precedence */
+}
+
+table.game-board td.locked {
+    background-color: var(--color-locked) !important; /* Ensure locked color takes precedence */
+}
+
+table.game-board td.hit.ship {
+    background-color: var(--color-hit-ship) !important; /* Ensure hit.ship color takes precedence */
 }
 
 /* Styling for the status tables */
@@ -35,7 +64,11 @@ table.game-board th {
 }
 
 .status-table th {
-    background-color: #f0f0f0;
+    background-color: var(--color-table-header);
+}
+
+table.status-table td {
+    background-color: var(--color-table-cell-empty); /* Use the same color as empty game-board cells */
 }
 
 /* Styling for headings */
@@ -51,15 +84,26 @@ table.game-board th {
 :root {
     --cell-size: 50px; /* Variable to control table cell size */
     --table-text-size: 28px; /* Variable to control text size inside tables */
+    --color-background: #F8F3E9; /* Creamy aged canvas base */
+    --color-table-header: #EDE4D8; /* Soft impasto highlight */
+    --color-table-cell-empty: #EFEBE3; /* Warm parchment neutral, subtle aged paper tone */
+    --color-hit: #C8C8C8; /* Light silvery glaze */
+    --color-hit-ship: #6D7D99; /* Darker, greyed-out washed ship - damaged shadow */
+    --color-miss: #D97C3F; /* Burnt sienna splatter */
+    --color-locked: #D2C4B8; /* Slightly darker pearl with subtle orange tint */
+    --color-ship: #4A6FA5; /* Indigo hull with teal undertone */
+    --color-invalid-ship: #A93226; /* Raw umber crimson */
+    --color-hit-marker: #B22222; /* Fiery brick glaze */
+    --color-border: #2C1810; /* Rich burnt umber linework */
+    --color-border-hit-marker: #8B1A1A; /* Darker brick rim */
+}
+
+body {
+    background-color: var(--color-background); /* Use variable for background color */
 }
 
 .ship {
-    background-color: blue; /* Color for ship cells */
-}
-
-/* Styling for cells that are both ship and invalid */
-.ship.invalid {
-    background-color: red; /* Color for cells that are both ship and invalid */
+    background-color: var(--color-ship); /* Use variable for ship cell color */
 }
 
 /* Styling for the button container and button */
@@ -80,7 +124,6 @@ table.game-board th {
 
 /* Style for hit cells */
 .hit {
-    background-color: #d3d3d3; /* Light gray for hit cells */
     position: relative;
 }
 
@@ -91,8 +134,8 @@ table.game-board th {
     top: 50%;
     left: 50%;
     width: 100%;
-    height: 2px;
-    background-color: red;
+    height: 3px;
+    background-color: var(--color-border-hit-marker); /* Use variable for hit marker border color */
     transform-origin: center;
 }
 
@@ -104,22 +147,7 @@ table.game-board th {
     transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-/* Style for miss cells */
-.miss {
-    background-color: orange;
-}
-
-/* Style for locked cells */
-.locked {
-    background-color: lightgrey;
-}
-
-/* Add styles for hit and ship-hit cells */
-.hit.ship {
-    background-color: #a9a9a9; /* Darker gray for hit cells that are part of a ship */
-}
-
 /* Ensure hit cells in the status board have the same shade as hit cells with ship */
 .status-table .hit {
-    background-color: #a9a9a9; /* Darker gray for hit cells in the status board */
+    background-color: var(--color-hit-ship);
 }
