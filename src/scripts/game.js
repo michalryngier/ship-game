@@ -205,8 +205,8 @@ class BoardState {
 
                 // Ensure the cell is within the working area
                 if (
-                    cellRow >= 1 && cellRow < 10 &&
-                    cellCol >= 1 && cellCol < 10 &&
+                    cellRow >= 1 && cellRow <= 10 &&
+                    cellCol >= 1 && cellCol <= 10 &&
                     !cell.classList.contains('miss') && !cell.classList.contains('ship')
                 ) {
                     cell.classList.add('locked');
