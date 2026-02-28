@@ -93,7 +93,7 @@ table.status-table td {
     --color-hit: #C8C8C8; /* Light silvery glaze */
     --color-hit-ship: #6D7D99; /* Darker, greyed-out washed ship - damaged shadow */
     --color-miss: #D97C3F; /* Burnt sienna splatter */
-    --color-locked: #D2C4B8; /* Slightly darker pearl with subtle orange tint */
+    --color-locked: #D97C3F; /* Slightly darker pearl with subtle orange tint */
     --color-ship: #4A6FA5; /* Indigo hull with teal undertone */
     --color-invalid-ship: #A93226; /* Raw umber crimson */
     --color-hit-marker: #B22222; /* Fiery brick glaze */
