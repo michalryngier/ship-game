@@ -414,7 +414,7 @@ class PlacingState {
                     const removalSuccessful = ship.removeCell(row, col);
 
                     if (!removalSuccessful) {
-                        alert('This cell cannot be removed based on the current rules!');
+                        alert('You cannot remove this ship because it violates the game rules.');
                         return;
                     }
 
@@ -437,12 +437,12 @@ class PlacingState {
                     // Check if the clicked cell will be in Moore neighborhood with 2 or more ships
                     const neighboringShips = this.board.getShips().filter(ship => ship.isInMooreNeighborhood(row, col));
                     if (neighboringShips.length >= 2) {
-                        alert('Cannot place a cell here as it will be in Moore neighborhood with 2 or more ships!');
+                        alert('You cannot place a ship here because it would connect two or more ships.');
                         return;
                     }
 
                     if (vonNeumannShip.cells.length >= MAX_SHIP_CELLS) {
-                        alert('A ship cannot have more than 4 cells!');
+                        alert('Ships cannot have more than 4 cells.');
                         return;
                     }
 
@@ -454,7 +454,7 @@ class PlacingState {
 
                 // Check for Moore neighborhood (disallow placement)
                 if (this.board.getShips().some(ship => ship.isInMooreNeighborhood(row, col))) {
-                    alert('Cannot place a ship here due to Moore neighborhood!');
+                    alert('You cannot place a ship here because it is too close to another ship.');
                     return;
                 }
 
@@ -791,5 +791,4 @@ document.querySelector('#ready-button').addEventListener('click', () => {
 // myBoard.addShip(testShip10);
 //
 // myBoard.state.validateShipRules();
-
 

@@ -28,7 +28,6 @@ table.game-board td,
     box-sizing: border-box;
     border-radius: 8px;
     padding: 3px;
-    background-clip: content-box;
 }
 
 table.game-board th {
@@ -111,7 +110,7 @@ body {
 }
 
 .ship {
-    background-color: var(--color-ship); /* Use variable for ship cell color */
+    background-color: var(--color-ship) !important; /* Ensure ship color takes precedence */
 }
 
 /* Styling for the button container and button */
