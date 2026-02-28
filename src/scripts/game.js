@@ -89,6 +89,7 @@ class BoardState {
         let isPressEvent = false;
 
         const handlePressStart = (event) => {
+            event.preventDefault();
             const target = event.touches ? document.elementFromPoint(event.touches[0].clientX, event.touches[0].clientY) : event.target;
             const row = target.parentElement.rowIndex;
             const col = target.cellIndex;
@@ -101,6 +102,7 @@ class BoardState {
         };
 
         const handlePressEnd = (event) => {
+            event.preventDefault();
             clearTimeout(pressTimer);
             if (!isPressEvent) {
                 const target = event.changedTouches ? document.elementFromPoint(event.changedTouches[0].clientX, event.changedTouches[0].clientY) : event.target;
@@ -113,9 +115,9 @@ class BoardState {
         };
 
         this.table.addEventListener('mousedown', handlePressStart);
-        this.table.addEventListener('touchstart', handlePressStart);
+        this.table.addEventListener('touchstart', handlePressStart, { passive: false }); // Added passive: false
         this.table.addEventListener('mouseup', handlePressEnd);
-        this.table.addEventListener('touchend', handlePressEnd);
+        this.table.addEventListener('touchend', handlePressEnd, { passive: false }); // Added passive: false
         this.table.addEventListener('mouseleave', () => {
             clearTimeout(pressTimer);
             isPressEvent = false;
