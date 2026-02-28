@@ -80,17 +80,14 @@ table.status-table td {
 
 /* Styling for headings */
 .heading-center {
+    margin-top: 10px;
+    margin-bottom: 10px;
     text-align: center;
 }
 
-.heading-left {
-    text-align: left;
-    margin-top: 20px;
-}
-
 :root {
-    --cell-size: 50px; /* Variable to control table cell size */
-    --table-text-size: 24px; /* Variable to control text size inside tables */
+    --cell-size: 40px; /* Variable to control table cell size */
+    --table-text-size: 18px; /* Variable to control text size inside tables */
     --color-background: #F8F3E9; /* Creamy aged canvas base */
     --color-table-header: #EDE4D8; /* Soft impasto highlight */
     --color-table-cell-empty: #EFEBE3; /* Warm parchment neutral, subtle aged paper tone */
@@ -121,16 +118,29 @@ body {
 .button-container {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
     width: 100%;
     position: relative;
     order: 1; /* Ensures it appears last in the flex container */
 }
 
-#ready-button {
-    padding: 10px 20px;
-    font-size: 16px;
+/* Style the button to match the color scheme */
+.btn {
+    background-color: var(--color-table-header); /* Match the table header color */
+    color: var(--color-border); /* Use the border color for text */
+    border: 2px solid var(--color-border); /* Add a border matching the color scheme */
+    border-radius: 8px; /* Add rounded corners */
+    font-size: var(--table-text-size); /* Match the table text size */
+    padding: 10px 20px; /* Add padding for better appearance */
     cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+    font-family: "Oswald", sans-serif; /* Match the font used in the body */
+    font-weight: 400; /* Ensure consistent font weight */
+    font-style: normal; /* Ensure consistent font style */
+}
+
+.btn:hover {
+    background-color: var(--color-border); /* Invert colors on hover */
+    color: var(--color-table-header); /* Invert text color on hover */
 }
 
 /* Style for hit cells */
