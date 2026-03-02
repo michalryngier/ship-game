@@ -8,6 +8,10 @@
     gap: 20px;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 table.game-board th,
 .status-table th {
     width: var(--cell-size);
