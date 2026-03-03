@@ -20,10 +20,26 @@ class GameState {
         this.readyButtonSelector = document.querySelector(readyButtonSelector);
     }
 
+    updateStatusText(text) {
+        const statusContainer = document.querySelector('.status-text');
+        const statusTextElement = document.querySelector('.status-text');
+
+        console.log('updateStatusText called with:', text, statusTextElement);
+
+        if (statusTextElement) {
+            console.log('Updating status text to:', text);
+
+
+            statusTextElement.textContent = text;
+            statusTextElement.style.display = text ? 'block' : 'none';
+            statusContainer.style.display = text ? 'block' : 'none';
+        }
+    }
+
     handleReadyButtonClick() {
         if (this.currentStage === STAGES.PLACING) {
             this.setStage(STAGES.PLAYING);
-            this.readyButtonSelector.style.display = 'none'
+            this.readyButtonSelector.style.display = 'none';
         }
     }
 
@@ -32,17 +48,20 @@ class GameState {
 
         switch (stage) {
             case STAGES.PLACING:
-                this.myBoard.setState(new PlacingState(this.myBoard, this.readyButtonSelector));
+                this.myBoard.setState(new PlacingState(this.myBoard, this.readyButtonSelector, '.status-text'));
                 this.opponentBoard.setState(new LockedState());
+                this.updateStatusText('Trwa rozstawianie statków...');
                 break;
             case STAGES.PLAYING:
                 this.myBoard.setState(new PlayingState(this.myBoard, new MyBoardStrategy()))
                 this.opponentBoard.setState(new PlayingState(this.opponentBoard, new OpponentBoardStrategy()));
+                this.updateStatusText('Rozgrywka trwa...');
                 break;
             case STAGES.END_GAME:
             default:
                 this.myBoard.setState(new LockedState());
                 this.opponentBoard.setState(new LockedState());
+                this.updateStatusText('');
                 break;
         }
 
@@ -411,10 +430,12 @@ class OpponentBoardStrategy extends BoardStrategyInterface {
 
 // Example states for BoardState
 class PlacingState {
-    constructor(board, buttonSelector) {
+    constructor(board, buttonSelector, statusContainerSelector) {
         this.board = board; // Reference to the board this state belongs to
         this.button = buttonSelector;
+        this.statusContainer = document.querySelector(statusContainerSelector);
         this.hideButton(); // Initially hide the button
+        this.showStatus(); // Initially show the status container
     }
 
     handleEvent(event) {
@@ -430,7 +451,7 @@ class PlacingState {
                     const removalSuccessful = ship.removeCell(row, col);
 
                     if (!removalSuccessful) {
-                        showModal('You cannot remove this ship because it violates the game rules.');
+                        showModal('Nie możesz usunąć tego statku, bo narusza to zasady gry, arrr!');
                         return;
                     }
 
@@ -453,12 +474,12 @@ class PlacingState {
                     // Check if the clicked cell will be in Moore neighborhood with 2 or more ships
                     const neighboringShips = this.board.getShips().filter(ship => ship.isInMooreNeighborhood(row, col));
                     if (neighboringShips.length >= 2) {
-                        showModal('You cannot place a ship here because it would connect two or more ships.');
+                        showModal('Nie możesz umieścić statku tutaj, bo połączyłby dwa lub więcej statków, arrr!');
                         return;
                     }
 
                     if (vonNeumannShip.cells.length >= MAX_SHIP_CELLS) {
-                        showModal('Ships cannot have more than 4 cells.');
+                        showModal('Statki nie mogą mieć więcej niż 4 pola, arrr!');
                         return;
                     }
 
@@ -470,7 +491,7 @@ class PlacingState {
 
                 // Check for Moore neighborhood (disallow placement)
                 if (this.board.getShips().some(ship => ship.isInMooreNeighborhood(row, col))) {
-                    showModal('You cannot place a ship here because it is too close to another ship.');
+                    showModal('Nie możesz umieścić statku tutaj, bo jest za blisko innego statku, arrr!');
                     return;
                 }
 
@@ -522,10 +543,23 @@ class PlacingState {
 
     showButton() {
         this.button.style.display = 'block';
+        console.log(this.statusContainer);
+        if (this.statusContainer) {
+            this.statusContainer.style.display = 'none';
+        }
     }
 
     hideButton() {
         this.button.style.display = 'none';
+        if (this.statusContainer) {
+            this.statusContainer.style.display = 'block';
+        }
+    }
+
+    showStatus() {
+        if (this.statusContainer) {
+            this.statusContainer.style.display = 'block';
+        }
     }
 }
 
@@ -756,55 +790,55 @@ document.querySelector('#ready-button').addEventListener('click', () => {
 
 
 // Initial debug setup: set ships on my board for testing. DO NOT REMOVE THIS
-// const testShip1 = new Ship();
-// testShip1.addCell(1, 1, myBoard.table.rows[1].cells[1]);
-// testShip1.addCell(1, 2, myBoard.table.rows[1].cells[2]);
-// testShip1.addCell(1, 3, myBoard.table.rows[1].cells[3]);
-// testShip1.addCell(1, 4, myBoard.table.rows[1].cells[4]);
-// myBoard.addShip(testShip1);
-//
-// const testShip2 = new Ship();
-// testShip2.addCell(3, 3, myBoard.table.rows[3].cells[3]);
-// testShip2.addCell(4, 3, myBoard.table.rows[4].cells[3]);
-// testShip2.addCell(5, 3, myBoard.table.rows[5].cells[3]);
-// myBoard.addShip(testShip2);
-//
-// const testShip3 = new Ship();
-// testShip3.addCell(3, 5, myBoard.table.rows[3].cells[5]);
-// testShip3.addCell(4, 5, myBoard.table.rows[4].cells[5]);
-// testShip3.addCell(5, 5, myBoard.table.rows[5].cells[5]);
-// myBoard.addShip(testShip3);
-//
-// const testShip4 = new Ship();
-// testShip4.addCell(7, 7, myBoard.table.rows[7].cells[7]);
-// testShip4.addCell(7, 8, myBoard.table.rows[7].cells[8]);
-// myBoard.addShip(testShip4);
-//
-// const testShip5 = new Ship();
-// testShip5.addCell(5, 7, myBoard.table.rows[5].cells[7]);
-// testShip5.addCell(5, 8, myBoard.table.rows[5].cells[8]);
-// myBoard.addShip(testShip5);
-//
-// const testShip6 = new Ship();
-// testShip6.addCell(3, 7, myBoard.table.rows[3].cells[7]);
-// testShip6.addCell(3, 8, myBoard.table.rows[3].cells[8]);
-// myBoard.addShip(testShip6);
-//
-// const testShip7 = new Ship();
-// testShip7.addCell(9, 9, myBoard.table.rows[9].cells[9]);
-// myBoard.addShip(testShip7);
-//
-// const testShip8 = new Ship();
-// testShip8.addCell(10, 1, myBoard.table.rows[10].cells[1]);
-// myBoard.addShip(testShip8);
-//
-// const testShip9 = new Ship();
-// testShip9.addCell(10, 3, myBoard.table.rows[10].cells[3]);
-// myBoard.addShip(testShip9);
-//
-// const testShip10 = new Ship();
-// testShip10.addCell(10, 5, myBoard.table.rows[10].cells[5]);
-// myBoard.addShip(testShip10);
-//
-// myBoard.state.validateShipRules();
+const testShip1 = new Ship();
+testShip1.addCell(1, 1, myBoard.table.rows[1].cells[1]);
+testShip1.addCell(1, 2, myBoard.table.rows[1].cells[2]);
+testShip1.addCell(1, 3, myBoard.table.rows[1].cells[3]);
+testShip1.addCell(1, 4, myBoard.table.rows[1].cells[4]);
+myBoard.addShip(testShip1);
+
+const testShip2 = new Ship();
+testShip2.addCell(3, 3, myBoard.table.rows[3].cells[3]);
+testShip2.addCell(4, 3, myBoard.table.rows[4].cells[3]);
+testShip2.addCell(5, 3, myBoard.table.rows[5].cells[3]);
+myBoard.addShip(testShip2);
+
+const testShip3 = new Ship();
+testShip3.addCell(3, 5, myBoard.table.rows[3].cells[5]);
+testShip3.addCell(4, 5, myBoard.table.rows[4].cells[5]);
+testShip3.addCell(5, 5, myBoard.table.rows[5].cells[5]);
+myBoard.addShip(testShip3);
+
+const testShip4 = new Ship();
+testShip4.addCell(7, 7, myBoard.table.rows[7].cells[7]);
+testShip4.addCell(7, 8, myBoard.table.rows[7].cells[8]);
+myBoard.addShip(testShip4);
+
+const testShip5 = new Ship();
+testShip5.addCell(5, 7, myBoard.table.rows[5].cells[7]);
+testShip5.addCell(5, 8, myBoard.table.rows[5].cells[8]);
+myBoard.addShip(testShip5);
+
+const testShip6 = new Ship();
+testShip6.addCell(3, 7, myBoard.table.rows[3].cells[7]);
+testShip6.addCell(3, 8, myBoard.table.rows[3].cells[8]);
+myBoard.addShip(testShip6);
+
+const testShip7 = new Ship();
+testShip7.addCell(9, 9, myBoard.table.rows[9].cells[9]);
+myBoard.addShip(testShip7);
+
+const testShip8 = new Ship();
+testShip8.addCell(10, 1, myBoard.table.rows[10].cells[1]);
+myBoard.addShip(testShip8);
+
+const testShip9 = new Ship();
+testShip9.addCell(10, 3, myBoard.table.rows[10].cells[3]);
+myBoard.addShip(testShip9);
+
+const testShip10 = new Ship();
+testShip10.addCell(10, 5, myBoard.table.rows[10].cells[5]);
+myBoard.addShip(testShip10);
+
+myBoard.state.validateShipRules();
 

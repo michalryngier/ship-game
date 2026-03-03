@@ -224,3 +224,17 @@ body {
     text-align: center;
     border-top: 1px solid #ccc;
 }
+
+.status-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+    background-color: transparent; /* Matches the body background or makes it transparent */
+    padding: 10px 0;
+    color: rgba(0, 0, 0, 0.5); /* Dimmed text color */
+}
