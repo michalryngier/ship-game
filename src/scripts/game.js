@@ -790,55 +790,55 @@ document.querySelector('#ready-button').addEventListener('click', () => {
 
 
 // Initial debug setup: set ships on my board for testing. DO NOT REMOVE THIS
-const testShip1 = new Ship();
-testShip1.addCell(1, 1, myBoard.table.rows[1].cells[1]);
-testShip1.addCell(1, 2, myBoard.table.rows[1].cells[2]);
-testShip1.addCell(1, 3, myBoard.table.rows[1].cells[3]);
-testShip1.addCell(1, 4, myBoard.table.rows[1].cells[4]);
-myBoard.addShip(testShip1);
+// const testShip1 = new Ship();
+// testShip1.addCell(1, 1, myBoard.table.rows[1].cells[1]);
+// testShip1.addCell(1, 2, myBoard.table.rows[1].cells[2]);
+// testShip1.addCell(1, 3, myBoard.table.rows[1].cells[3]);
+// testShip1.addCell(1, 4, myBoard.table.rows[1].cells[4]);
+// myBoard.addShip(testShip1);
 
-const testShip2 = new Ship();
-testShip2.addCell(3, 3, myBoard.table.rows[3].cells[3]);
-testShip2.addCell(4, 3, myBoard.table.rows[4].cells[3]);
-testShip2.addCell(5, 3, myBoard.table.rows[5].cells[3]);
-myBoard.addShip(testShip2);
+// const testShip2 = new Ship();
+// testShip2.addCell(3, 3, myBoard.table.rows[3].cells[3]);
+// testShip2.addCell(4, 3, myBoard.table.rows[4].cells[3]);
+// testShip2.addCell(5, 3, myBoard.table.rows[5].cells[3]);
+// myBoard.addShip(testShip2);
 
-const testShip3 = new Ship();
-testShip3.addCell(3, 5, myBoard.table.rows[3].cells[5]);
-testShip3.addCell(4, 5, myBoard.table.rows[4].cells[5]);
-testShip3.addCell(5, 5, myBoard.table.rows[5].cells[5]);
-myBoard.addShip(testShip3);
+// const testShip3 = new Ship();
+// testShip3.addCell(3, 5, myBoard.table.rows[3].cells[5]);
+// testShip3.addCell(4, 5, myBoard.table.rows[4].cells[5]);
+// testShip3.addCell(5, 5, myBoard.table.rows[5].cells[5]);
+// myBoard.addShip(testShip3);
 
-const testShip4 = new Ship();
-testShip4.addCell(7, 7, myBoard.table.rows[7].cells[7]);
-testShip4.addCell(7, 8, myBoard.table.rows[7].cells[8]);
-myBoard.addShip(testShip4);
+// const testShip4 = new Ship();
+// testShip4.addCell(7, 7, myBoard.table.rows[7].cells[7]);
+// testShip4.addCell(7, 8, myBoard.table.rows[7].cells[8]);
+// myBoard.addShip(testShip4);
 
-const testShip5 = new Ship();
-testShip5.addCell(5, 7, myBoard.table.rows[5].cells[7]);
-testShip5.addCell(5, 8, myBoard.table.rows[5].cells[8]);
-myBoard.addShip(testShip5);
+// const testShip5 = new Ship();
+// testShip5.addCell(5, 7, myBoard.table.rows[5].cells[7]);
+// testShip5.addCell(5, 8, myBoard.table.rows[5].cells[8]);
+// myBoard.addShip(testShip5);
 
-const testShip6 = new Ship();
-testShip6.addCell(3, 7, myBoard.table.rows[3].cells[7]);
-testShip6.addCell(3, 8, myBoard.table.rows[3].cells[8]);
-myBoard.addShip(testShip6);
+// const testShip6 = new Ship();
+// testShip6.addCell(3, 7, myBoard.table.rows[3].cells[7]);
+// testShip6.addCell(3, 8, myBoard.table.rows[3].cells[8]);
+// myBoard.addShip(testShip6);
 
-const testShip7 = new Ship();
-testShip7.addCell(9, 9, myBoard.table.rows[9].cells[9]);
-myBoard.addShip(testShip7);
+// const testShip7 = new Ship();
+// testShip7.addCell(9, 9, myBoard.table.rows[9].cells[9]);
+// myBoard.addShip(testShip7);
 
-const testShip8 = new Ship();
-testShip8.addCell(10, 1, myBoard.table.rows[10].cells[1]);
-myBoard.addShip(testShip8);
+// const testShip8 = new Ship();
+// testShip8.addCell(10, 1, myBoard.table.rows[10].cells[1]);
+// myBoard.addShip(testShip8);
 
-const testShip9 = new Ship();
-testShip9.addCell(10, 3, myBoard.table.rows[10].cells[3]);
-myBoard.addShip(testShip9);
+// const testShip9 = new Ship();
+// testShip9.addCell(10, 3, myBoard.table.rows[10].cells[3]);
+// myBoard.addShip(testShip9);
 
-const testShip10 = new Ship();
-testShip10.addCell(10, 5, myBoard.table.rows[10].cells[5]);
-myBoard.addShip(testShip10);
+// const testShip10 = new Ship();
+// testShip10.addCell(10, 5, myBoard.table.rows[10].cells[5]);
+// myBoard.addShip(testShip10);
 
-myBoard.state.validateShipRules();
+// myBoard.state.validateShipRules();
 
