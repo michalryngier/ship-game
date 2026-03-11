@@ -5,7 +5,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: var(--game-container-gap);
 }
 
 .hidden {
@@ -89,8 +89,10 @@ table.status-table td {
 }
 
 :root {
+    /* Default (base) styles */
     --cell-size: 40px; /* Variable to control table cell size */
     --table-text-size: 18px; /* Variable to control text size inside tables */
+    --game-container-gap: 20px; /* Variable to control gap in game container */
     --color-background: #F8F3E9; /* Creamy aged canvas base */
     --color-table-header: #EDE4D8; /* Soft impasto highlight */
     --color-table-cell-empty: #EFEBE3; /* Warm parchment neutral, subtle aged paper tone */
@@ -103,6 +105,33 @@ table.status-table td {
     --color-hit-marker: #B22222; /* Fiery brick glaze */
     --color-border: #4A3B30; /* Lighter burnt umber - softened linework */
     --color-border-hit-marker: #8B1A1A; /* Darker brick rim */
+}
+
+/* Small screen adjustments */
+@media (max-width: 600px) {
+    :root {
+        --cell-size: 30px;
+        --table-text-size: 14px;
+        --game-container-gap: 10px;
+    }
+}
+
+/* Medium screen adjustments */
+@media (min-width: 601px) and (max-width: 820px) {
+    :root {
+        --cell-size: 35px;
+        --table-text-size: 16px;
+        --game-container-gap: 15px;
+    }
+}
+
+/* Large screen adjustments */
+@media (min-width: 820px) {
+    :root {
+        --cell-size: 40px;
+        --table-text-size: 18px;
+        --game-container-gap: 20px;
+    }
 }
 
 body {
@@ -229,7 +258,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
     bottom: 0;
     width: 100%;
     font-size: 20px;
