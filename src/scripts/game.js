@@ -149,6 +149,9 @@ class BoardState {
             clearTimeout(pressTimer);
             isPressEvent = false;
         });
+        this.table.addEventListener('touchend', (e) => {
+            e.preventDefault();
+        })
     }
 
     setState(state) {
